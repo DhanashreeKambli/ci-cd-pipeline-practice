@@ -1,2 +1,1 @@
-FROM alpine
-CMD ["echo", "Hello from Docker"]
+FROM nginx:latest
