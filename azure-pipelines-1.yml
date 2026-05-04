@@ -1,0 +1,37 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  imageName: 'myapp'
+
+stages:
+- stage: BuildAndPush
+  displayName: Build and Push Docker Image
+  jobs:
+  - job: DockerBuildPush
+    steps:
+
+    - checkout: self
+
+    # Build Docker Image
+    - task: Docker@2
+      displayName: Build Docker Image
+      inputs:
+        command: build
+        repository: $(imageName)
+        Dockerfile: '**/Dockerfile'
+        tags: |
+          latest
+
+    # Push Docker Image to ACR
+    - task: Docker@2
+      displayName: Push Docker Image to ACR
+      inputs:
+        command: push
+        repository: $(imageName)
+        tags: |
+          latest
+        containerRegistry: 'acr-connection'
