@@ -7,7 +7,7 @@ pool:
 variables:
      acrImage: 'myappregistry123.azurecr.io'
      imageName: 'myapp'
-     fullImageName: ',myappregistry123.azure.io/myapp'
+     fullImageName: ',myappregistry123.azurecr.io/myapp'
 
 stages:
   - stage: BuildAndPush
