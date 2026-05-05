@@ -28,7 +28,7 @@ stages:
             displayName: Build Docker Image
             inputs:
               command: build
-              repository: $('fullImageName')
+              repository: $(fullImageName)
               Dockerfile: '**/Dockerfile'
               tags: |
                 latest
@@ -38,7 +38,7 @@ stages:
             displayName: Push Docker Image to ACR
             inputs:
               command: push
-              repository: $('fullImageName')
+              repository: $(fullImageName)
               tags: |
                 latest
               containerRegistry: 'acr-connection'
