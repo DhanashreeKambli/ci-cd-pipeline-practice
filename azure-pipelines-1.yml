@@ -5,9 +5,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-   acrImage: 'myappregistry123.azurecr.io'
    imageName: 'myapp'
-   fullImageName: 'myappregistry123.azurecr.io/myapp'
+   acrLoginServer: 'myappregistry123.azurecr.io'
 
 stages:
   - stage: BuildAndPush
@@ -28,7 +27,7 @@ stages:
             displayName: Build Docker Image
             inputs:
               command: build
-              repository: $(fullImageName)
+              repository: $(acrLoginServer)/$(imageName)
               Dockerfile: '**/Dockerfile'
               tags: |
                  latest
@@ -38,7 +37,7 @@ stages:
             displayName: Push Docker Image
             inputs:
               command: push
-              repository: $(fullImageName)
+              repository: $(acrLoginServer)/$(imageName)
               tags: |
                 latest
               containerRegistry: 'acr-connection'
