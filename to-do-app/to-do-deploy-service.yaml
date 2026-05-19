@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+   name: to-do-app-deployment
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         app: to-do-app
+   template:
+      metadata:
+        labels:
+           app: to-do-app
+      spec:
+        containers:
+          - name: to-do-app-container
+            image: dhanu1996/to-do-app:v1
+            ports:
+              - containerPort: 5000
+            resources:
+              limits:
+                memory: "128Mi"
+                cpu: "500m"
+              requests:
+                memory: "64Mi"
+                cpu: "250m"
+---
+apiVersion: v1
+kind: Service 
+metadata: 
+   name: to-do-app-service
+spec:
+  selector:
+    app: to-do-app
+  type: 
+     NodePort
+  ports:
+         - port: 80
+           targetPort: 5000
+           nodePort: 30012
+
+
+
+           
