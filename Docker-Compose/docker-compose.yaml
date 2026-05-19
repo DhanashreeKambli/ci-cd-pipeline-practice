@@ -3,7 +3,7 @@ services:
   frontend:   
      build: ./frontend
      ports:
-       - "8080:80"
+       - "8081:80"
      container_name: docker-compose-frontend-container
 
   backend:
