@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+   name: weather-app-deployment
+spec:
+  replicas: 1
+  selector:
+     matchLabels:
+       app: weather-app
+  template:
+     metadata:
+        labels:
+           app: weather-app
+     spec:
+         containers:
+           - name: weather-app-container
+             image: dhanu1996/weather-app:v1
+             ports:
+                - containerPort: 5000
+             resources:
+                requests: 
+                   cpu: "700m"
+                   memory: "500Mi"
+                limits:
+                   cpu: "1000m"
+                   memory: "900Mi"
+---
+apiVersion: v1
+kind: Service 
+metadata:
+   name: weather-app-service
+spec:
+  selector:
+    app: weather-app
+  type:
+     NodePort
+  ports:
+     - port: 80
+       targetPort: 5000
+       nodePort: 30001
+       
