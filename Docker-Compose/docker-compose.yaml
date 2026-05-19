@@ -4,8 +4,10 @@ services:
      build: ./frontend
      ports:
        - "8080:80"
+     container_name: docker-compose-frontend-container
 
   backend:
      build: ./backend
      ports:
       - "5050:5050"
+     container_name: docker-compose-backend-container
