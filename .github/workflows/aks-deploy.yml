@@ -1,0 +1,42 @@
+name: CI-CD to AKS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout code
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # 2. Login to Docker Hub
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    # 3. Build Docker image
+    - name: Build Docker image
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/notes-app:latest .
+
+    # 4. Push Docker image
+    - name: Push Docker image
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/notes-app:latest
+
+    # 5. Setup kubectl
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+
+    # 6. Configure kubeconfig (we will add later)
+    - name: Set kubeconfig
+      run: |
+        echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
+        export KUBECONFIG=kubeconfig
+
+    # 7. Deploy to AKS
+    - name: Deploy to AKS
+      run: |
+        kubectl apply -f notes-deploy-service.yaml
