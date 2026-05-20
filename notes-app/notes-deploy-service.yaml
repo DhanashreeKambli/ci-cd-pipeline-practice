@@ -15,15 +15,27 @@ spec:
       containers:
         - name: notes-app-container
           image: dhanu1996/notes-app:v2
+          env:
+            - name: APP_NAME
+              valueFrom:
+                 configMapKeyRef:
+                   name: notes-app-config
+                   key: APP_NAME
+            - name: APP_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: notes-app-config
+                  key: APP_ENV
           ports:
             - containerPort: 5000
           resources:
             limits:
-              cpu: "1000m"
-              memory: "500Mi"
+              cpu: "500m"
+              memory: "200Mi"
             requests:
-              cpu: "700m"
-              memory: "400Mi"
+              cpu: "200m"
+              memory: "177Mi"
+
             
 ---
 apiVersion: v1
@@ -33,7 +45,7 @@ metadata:
 spec: 
   selector: 
     app: notes-app
-  type: NodePort
+  type: LoadBalancer
   ports: 
     - port: 80
       targetPort: 5000

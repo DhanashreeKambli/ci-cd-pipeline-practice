@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap 
+metadata:
+  name: notes-app-config
+data:
+  APP_NAME: "Notes APP"
+  APP_ENV: "production"
