@@ -39,4 +39,4 @@ jobs:
     # 7. Deploy to AKS
     - name: Deploy to AKS
       run: |
-        kubectl apply -f notes-deploy-service.yaml
+        kubectl apply -f notes-app/notes-deploy-service.yaml
