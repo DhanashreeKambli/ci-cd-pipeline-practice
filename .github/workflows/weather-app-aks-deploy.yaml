@@ -33,4 +33,4 @@ jobs:
 
     - name: Deploy to AKS
       run: |
-        kubectl apply -f weather-app/weather-deploy-service.yaml
+        kubectl apply -f weather-app/weather-app-deploy-service.yaml
