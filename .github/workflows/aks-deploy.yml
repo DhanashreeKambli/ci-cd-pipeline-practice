@@ -32,5 +32,5 @@ jobs:
         echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
 
     - name: Deploy to AKS
-  run: |
-    kubectl apply -f notes-deploy-service.yaml
+      run: |
+        kubectl apply -f notes-app/notes-deploy-service.yaml
