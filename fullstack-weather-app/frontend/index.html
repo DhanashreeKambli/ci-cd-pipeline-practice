@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Weather App</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            text-align:center;
+            margin-top:50px;
+            background:#f4f4f4;
+        }
+
+        .card{
+            background:white;
+            width:400px;
+            margin:auto;
+            padding:30px;
+            border-radius:10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>Weather App</h1>
+
+    <h2 id="city"></h2>
+    <h2 id="temp"></h2>
+    <h2 id="condition"></h2>
+
+</div>
+
+<script>
+
+fetch("http://BACKEND-SERVICE-IP/weather")
+.then(response => response.json())
+.then(data => {
+
+    document.getElementById("city").innerHTML =
+        "City: " + data.city;
+
+    document.getElementById("temp").innerHTML =
+        "Temperature: " + data.temperature;
+
+    document.getElementById("condition").innerHTML =
+        "Condition: " + data.condition;
+
+});
+
+</script>
+
+</body>
+</html>
