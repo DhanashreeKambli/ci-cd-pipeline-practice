@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: weather-app-ingress
 spec:
+  ingressClassName: nginx
   rules:
   - host: weatherapp.local
     http:
@@ -13,11 +14,11 @@ spec:
           service:
             name: weather-frontend-service
             port: 
-              number: 30010
+              number: 80
       - pathType: Prefix
         path: "/api"
         backend:
           service:
             name: weather-backend-service
             port:
-              number: 30011
+              number: 80
