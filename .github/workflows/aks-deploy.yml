@@ -1,4 +1,4 @@
-name: Docker Build Push
+name: CI-CD to AKS
 
 on:
   push:
@@ -22,3 +22,15 @@ jobs:
 
     - name: Push Docker Image
       run: docker push ${{ secrets.DOCKER_USERNAME }}/notes-app:v1
+
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+
+    - name: Set kubeconfig
+      run: |
+        mkdir -p ~/.kube
+        echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
+
+    - name: Deploy to AKS
+      run: |
+        kubectl apply -f notes-deploy-service.yaml
