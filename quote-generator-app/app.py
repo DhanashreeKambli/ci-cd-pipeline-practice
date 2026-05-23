@@ -4,17 +4,17 @@ import random
 app = Flask(__name__)
 
 quotes = [
-    "Believe in yourself",
-    "Never stop learning",
-    "Dream big",
-    "Consistency beats talent",
-    "DevOps is fun!"
+    "Believe in yourself!",
+    "DevOps is fun 🚀",
+    "Consistency beats motivation.",
+    "Small steps every day.",
+    "Dream big and work hard."
 ]
 
-@app.route('/')
+@app.route("/")
 def home():
     quote = random.choice(quotes)
-    return render_template('index.html', quote=quote)
+    return render_template("index.html", quote=quote)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+   name: quote-generator-app-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: quote-generator-app
+    template:
+        metadata:
+           labels:
+              app: quote-generator-app
+        spec:
+           containers:
+              - name: quote-generator-app
+                image: dhanuregistry.azurecr.io/quote-generator-app:v1
+                ports:
+                   - containerPort: 5000
+                resources:
+                   requests:
+                      memory: "128Mi"
+                      cpu: "130m"
+                   limits:
+                      memory: "170Mi"
+                      cpu: "170m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quote-generator-app-service
+spec:
+  selector:
+     app: quote-generator-app
+  type: NodePort
+  ports:
+     - port: 80
+       targetPort: 5000
+       nodePort: 30001
+ 
