@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+   name: notes-app-backend-deployment
+spec:
+  replicas: 1
+  selector:
+     matchLabels:
+        app: notes-app-backend
+  template:
+    metadata:
+       labels:
+         app: notes-app-backend
+    spec:
+      containers:
+        - name: notes-app-backend-container
+          image: notes-app-backend:v1
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "170m"
+            requests:
+              memory: "64Mi"
+              cpu: "110m"
+---
+apiVersion: v1
+kind: Service 
+metadata:
+   name: notes-app-backend-service
+spec:
+  app: notes-app-backend
+  type: ClusterIP
+  ports:
+    - port: 5000
+      targetPort: 5000
