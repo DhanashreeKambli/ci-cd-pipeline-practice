@@ -13,8 +13,8 @@ spec:
               app: quote-generator-app
         spec:
            containers:
-              - name: quote-generator-app
-                image: dhanuregistry.azurecr.io/quote-generator-app-2:v1
+              - name: quote-generator-app-container
+                image: dhanuregistry.azurecr.io/quote-generator-app-2:v2
                 ports:
                    - containerPort: 5000
                 resources:
