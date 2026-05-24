@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: notes-app-backend-container
-          image: notes-app-backend:v1
+          image: dhanuregistry.azurecr.io/notes-app-backend-1:v1
           ports:
             - containerPort: 5000
           resources:
@@ -26,12 +26,18 @@ spec:
               cpu: "110m"
 ---
 apiVersion: v1
-kind: Service 
+kind: Service
+
 metadata:
-   name: notes-app-backend-service
+  name: notes-app-backend-service
+
 spec:
-  app: notes-app-backend
   type: ClusterIP
+
+  selector:
+    app: notes-app-backend
+
   ports:
     - port: 5000
       targetPort: 5000
+      
