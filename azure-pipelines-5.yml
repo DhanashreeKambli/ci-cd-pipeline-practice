@@ -1,23 +1,24 @@
 trigger:
- - main
+- main
+
 pool:
- vmImage: ubuntu-latest
+  vmImage: ubuntu-latest
 
 variables:
   imageName: 'azure-devops-app-1'
 
 stages:
-  - stage: Build
-    jobs:
-      - job: BuildPush
-        steps:
-          - task: Docker@2
-            displayName: Build and Push Docker Image
-            inputs: 
-             containerRegistry: 'acr-connection'
-             repository: '$(imageName)'
-             Dockerfile: '**/app/Dockerfile'
-             command: 'buildAndPush'
-             tags: |
-               latest
-               $(Build.BuildId)
+- stage: Build
+  jobs:
+  - job: BuildPush
+    steps:
+    - task: Docker@2
+      displayName: Build and Push Docker Image
+      inputs:
+        containerRegistry: 'acr-connection'
+        repository: '$(imageName)'
+        Dockerfile: 'app/Dockerfile'
+        command: 'buildAndPush'
+        tags: |
+          latest
+          $(Build.BuildId)
