@@ -4,7 +4,7 @@ pool:
  vmImage: ubuntu-latest
 
 variables:
-  imageName: 'azure-devops-app'
+  imageName: 'azure-devops-app-1'
 
 stages:
   - stage: Build
