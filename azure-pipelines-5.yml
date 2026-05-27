@@ -4,7 +4,7 @@ pool:
  vmImage: ubuntu-latest
 
 variables:
-  imageName: 'dhanuregistry'
+  imageName: 'azure-devops-app'
 
 stages:
   - stage: Build
