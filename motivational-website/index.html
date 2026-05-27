@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DevOps Quote App</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: white;
+            text-align: center;
+            font-family: Arial;
+            padding-top: 100px;
+        }
+
+        .box {
+            background-color: #1e293b;
+            width: 60%;
+            margin: auto;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #38bdf8;
+        }
+
+        p {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h1>Welcome to DevOps World 🚀</h1>
+
+        <p id="quote">
+            "Success in DevOps comes from practice every day."
+        </p>
+
+        <button onclick="changeQuote()">
+            New Quote
+        </button>
+    </div>
+
+    <script>
+        const quotes = [
+            "Practice makes DevOps perfect 🚀",
+            "CI/CD saves deployment time ⚡",
+            "Docker + Kubernetes = Powerful combo 🔥",
+            "Automation is the future 💡",
+            "Keep learning and keep building 🌟"
+        ];
+
+        function changeQuote() {
+            const random = Math.floor(Math.random() * quotes.length);
+            document.getElementById("quote").innerText = quotes[random];
+        }
+    </script>
+
+</body>
+</html>
