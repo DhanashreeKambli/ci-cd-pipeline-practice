@@ -3,6 +3,9 @@ trigger:
 pool:
  vmImage: ubuntu-latest
 
+variables:
+  imageName: 'dhanuregistry'
+
 stages:
   - stage: Build
     jobs:
@@ -12,8 +15,9 @@ stages:
             displayName: Build and Push Docker Image
             inputs: 
              containerRegistry: 'acr-connection'
-             repository: 'dhanuregistry'
+             repository: '$(imageName)'
              Dockerfile: '**/app/Dockerfile'
              command: 'buildAndPush'
              tags: |
-               v1
+               latest
+               $(Build.BuildId)
