@@ -5,20 +5,18 @@ pool:
  vmImage: ubuntu-latest
 
 variables:
-  imageName: motivational-app
-
+  imageName: flask-app
 stages:
   - stage: Build
     jobs:
-      - job: BuildandPush
+      - job: BuildAndPush
         steps:
           - task: Docker@2
             displayName: Build and Push Docker Image
             inputs:
-              containerRegistry: 'motivational-acr-connection'
-              repository: '$(imageName)'
-              Dockerfile: '**/motivational-website/Dockerfile'
-              command: 'buildAndPush'
-              tags: |
-               $(Build.BuildId)
-             
+             containerRegistry: 'acr-connection'
+             repository: '$(imageName)'
+             Dockerfile: '**/flask-app/Dockerfile'
+             command: buildAndPush
+             tags: |
+               $(Build.BuildID)
