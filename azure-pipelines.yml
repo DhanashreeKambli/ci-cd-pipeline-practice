@@ -5,7 +5,7 @@ pool:
  vmImage: ubuntu-latest
 
 variables:
-  imageName: flask-app
+  imageName: portfolio-app
 stages:
   - stage: Build
     jobs:
@@ -16,7 +16,7 @@ stages:
             inputs:
              containerRegistry: 'acr-connection'
              repository: '$(imageName)'
-             Dockerfile: '**/flask-app/Dockerfile'
+             Dockerfile: '**/portfolio-app/Dockerfile'
              command: buildAndPush
              tags: |
                $(Build.BuildID)
