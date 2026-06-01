@@ -14,14 +14,14 @@ spec:
     spec:
       containers:
         - name: portfolio-container
-          image: dhanuregistry.azurecr.io/portfolio-app:v3
+          image: dhanuregistry.azurecr.io/portfolio-app:v4
           resources:
             limits:
-              cpu: "100m"
-              memory: "80Mi"
+              cpu: "300m"
+              memory: "150Mi"
             requests:
-              cpu: "50m"
-              memory: "60Mi"
+              cpu: "256m"
+              memory: "140Mi"
           ports:
             - containerPort: 5000
           
