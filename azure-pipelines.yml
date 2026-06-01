@@ -39,4 +39,4 @@ stages:
         action: deploy
         kubernetesServiceConnection: aks-connection
         manifests: |
-          portfolio-app-deploy-service.yaml
+           portfolio-app/portfolio-app-deploy-service.yaml
