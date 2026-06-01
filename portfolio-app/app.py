@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return f"""
+    return "Portfolio App Version 2"
     <html>
     <head>
         <title>DevOps Portfolio</title>
