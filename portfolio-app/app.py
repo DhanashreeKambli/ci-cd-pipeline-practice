@@ -15,6 +15,7 @@ def home():
         <h1>Welcome to Dhanashree's DevOps App 🚀</h1>
 
         <h2>Build & Release Engineer</h2>
+        <h2>DevOps Specialist</h2>
 
         <p>Application deployed on AKS using Kubernetes.</p>
 

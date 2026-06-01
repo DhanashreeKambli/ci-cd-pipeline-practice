@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: portfolio-container
-          image: dhanuregistry.azurecr.io/portfolio-app:v5
+          image: dhanuregistry.azurecr.io/portfolio-app:v6
           resources:
             limits:
               cpu: "300m"
