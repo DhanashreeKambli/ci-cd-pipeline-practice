@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: portfolio-app-config
 data:
-  APP_Version: "v4"
+  APP_Version: "v4.1"
   APP_Name: "Portfolio App"
