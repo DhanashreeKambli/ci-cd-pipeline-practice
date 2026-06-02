@@ -10,10 +10,8 @@ variables:
 stages:
 
 - stage: Build
-
   jobs:
   - job: BuildAndPush
-
     steps:
 
     - task: Docker@2
@@ -23,15 +21,13 @@ stages:
         command: buildAndPush
         Dockerfile: '**/portfolio-app/Dockerfile'
         tags: |
-          latest
+          $(Build.BuildId)
 
 - stage: Deploy
-
   dependsOn: Build
 
   jobs:
   - job: DeployToAKS
-
     steps:
 
     - task: KubernetesManifest@1
@@ -39,4 +35,4 @@ stages:
         action: deploy
         kubernetesServiceConnection: aks-connection
         manifests: |
-           portfolio-app/portfolio-app-deploy-service.yaml
+          portfolio-app/portfolio-app-deploy-service.yaml
