@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: portfolio-container
-          image: dhanuregistry.azurecr.io/portfolio-app:v4.1
+          image: dhanuregistry.azurecr.io/portfolio-app:v5
           resources:
             limits:
               cpu: "300m"
@@ -48,6 +48,14 @@ spec:
                 secretKeyRef:
                     name: portfolio-app-secret
                     key: APP_Password
+                    
+          volumeMount:
+                 mountPath: /app/data
+                 name: portfolio-persistent-storage
+      Volumes:
+        - name: portfolio-persistent-storage
+          persistentVolumeClaim:
+            claimName: portfolio-pvc      
                   
 
 ---
