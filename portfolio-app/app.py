@@ -4,6 +4,8 @@ import socket
 
 app = Flask(__name__)
 
+VERSION = "v1"
+
 @app.route("/")
 def home():
     return f"""
@@ -15,7 +17,8 @@ def home():
         <h1>Welcome to Dhanashree's DevOps App 🚀</h1>
 
         <h2>Build & Release Engineer</h2>
-        <h2>DevOps Specialist</h2>
+
+        <p><b>Application Version:</b> {VERSION}</p>
 
         <p>Application deployed on AKS using Kubernetes.</p>
 
@@ -24,6 +27,7 @@ def home():
         <p><b>Current Time:</b> {datetime.now()}</p>
 
         <p><b>Status:</b> Running Successfully</p>
+
     </body>
     </html>
     """
