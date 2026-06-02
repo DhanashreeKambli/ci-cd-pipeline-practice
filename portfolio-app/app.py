@@ -4,7 +4,7 @@ import socket
 
 app = Flask(__name__)
 
-VERSION = "v3"
+VERSION = "v4"
 
 @app.route("/")
 def home():
@@ -18,7 +18,6 @@ def home():
 
         <h2>Build & Release Engineer</h2>
         
-
         <p><b>Application Version:</b> {VERSION}</p>
 
         <p>Application deployed on AKS using Kubernetes.</p>
