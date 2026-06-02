@@ -1,20 +1,20 @@
 apiVersion: apps/v1
-kind: Deployment 
+kind: Deployment
 metadata:
-   name: portfolio-app-deployment
+  name: portfolio-app-deployment
 spec:
   replicas: 1
-  selector: 
-     matchLabels:
-       app: portfolio-app
+  selector:
+    matchLabels:
+      app: portfolio-app
   template:
     metadata:
       labels:
-         app: portfolio-app
+        app: portfolio-app
     spec:
       containers:
         - name: portfolio-container
-          image: dhanuregistry.azurecr.io/portfolio-app:v1
+          image: dhanuregistry.azurecr.io/portfolio-app:v1.1.1
           resources:
             limits:
               cpu: "300m"
@@ -24,21 +24,28 @@ spec:
               memory: "140Mi"
           ports:
             - containerPort: 5000
-          
+          env:
+            - name: APP_Version
+              valueFrom:
+                configMapKeyRef:
+                    name: portfolio-app-config
+                    key: APP_Version
+            - name: APP_Name
+              valueFrom:
+                configMapKeyRef:
+                    name: portfolio-app-config
+                    key: APP_Name
+
 ---
 apiVersion: v1
-kind: Service 
+kind: Service
 metadata:
   name: portfolio-app-service
 spec:
-   type: LoadBalancer
-   selector:
-     app: portfolio-app
-   ports:
-      - port: 80
-        targetPort: 5000
-        protocol: TCP
-
-
-
-       
+  type: LoadBalancer
+  selector:
+    app: portfolio-app
+  ports:
+    - port: 80
+      targetPort: 5000
+      protocol: TCP
