@@ -19,7 +19,8 @@ stages:
         containerRegistry: 'acr-connection'
         repository: '$(imageName)'
         command: buildAndPush
-        Dockerfile: '**/portfolio-app/Dockerfile'
+        Dockerfile: 'portfolio-app/Dockerfile'
+        buildContext: 'portfolio-app'
         tags: |
           $(Build.BuildId)
 
