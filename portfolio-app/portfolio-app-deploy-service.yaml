@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: portfolio-container
-          image: dhanuregistry.azurecr.io/portfolio-app:v1.1.1
+          image: dhanuregistry.azurecr.io/portfolio-app:v2
           resources:
             limits:
               cpu: "300m"
@@ -30,11 +30,25 @@ spec:
                 configMapKeyRef:
                     name: portfolio-app-config
                     key: APP_Version
+
             - name: APP_Name
               valueFrom:
                 configMapKeyRef:
                     name: portfolio-app-config
                     key: APP_Name
+           
+            - name: App_Username
+              valueFrom:
+                secretKeyRef:
+                    name: portfolio-app-secret
+                    key: App_Username
+            
+            - name: App_Password
+              valueFrom:
+                secretKeyRef:
+                    name: portfolio-app-secret
+                    key: APP_Password
+                  
 
 ---
 apiVersion: v1

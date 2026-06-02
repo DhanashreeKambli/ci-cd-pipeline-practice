@@ -4,7 +4,7 @@ import socket
 
 app = Flask(__name__)
 
-VERSION = "v1.1.1"
+VERSION = "v2"
 
 @app.route("/")
 def home():
