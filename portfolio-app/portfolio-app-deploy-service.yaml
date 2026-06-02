@@ -7,56 +7,61 @@ spec:
   selector:
     matchLabels:
       app: portfolio-app
+
   template:
     metadata:
       labels:
         app: portfolio-app
+
     spec:
       containers:
-        - name: portfolio-container
-          image: dhanuregistry.azurecr.io/portfolio-app:v5
-          resources:
-            limits:
-              cpu: "300m"
-              memory: "155Mi"
-            requests:
-              cpu: "256m"
-              memory: "140Mi"
-          ports:
-            - containerPort: 5000
-          env:
-            - name: APP_Version
-              valueFrom:
-                configMapKeyRef:
-                    name: portfolio-app-config
-                    key: APP_Version
+      - name: portfolio-container
+        image: dhanuregistry.azurecr.io/portfolio-app:v5
 
-            - name: APP_Name
-              valueFrom:
-                configMapKeyRef:
-                    name: portfolio-app-config
-                    key: APP_Name
-           
-            - name: App_Username
-              valueFrom:
-                secretKeyRef:
-                    name: portfolio-app-secret
-                    key: App_Username
-            
-            - name: App_Password
-              valueFrom:
-                secretKeyRef:
-                    name: portfolio-app-secret
-                    key: APP_Password
-                    
-          volumeMount:
-                 mountPath: /app/data
-                 name: portfolio-persistent-storage
-      Volumes:
+        resources:
+          limits:
+            cpu: "300m"
+            memory: "155Mi"
+          requests:
+            cpu: "256m"
+            memory: "140Mi"
+
+        ports:
+        - containerPort: 5000
+
+        env:
+        - name: APP_Version
+          valueFrom:
+            configMapKeyRef:
+              name: portfolio-app-config
+              key: APP_Version
+
+        - name: APP_Name
+          valueFrom:
+            configMapKeyRef:
+              name: portfolio-app-config
+              key: APP_Name
+
+        - name: App_Username
+          valueFrom:
+            secretKeyRef:
+              name: portfolio-app-secret
+              key: App_Username
+
+        - name: App_Password
+          valueFrom:
+            secretKeyRef:
+              name: portfolio-app-secret
+              key: APP_Password
+
+        volumeMounts:
         - name: portfolio-persistent-storage
-          persistentVolumeClaim:
-            claimName: portfolio-pvc      
-                  
+          mountPath: /app/data
+
+      volumes:
+      - name: portfolio-persistent-storage
+        persistentVolumeClaim:
+          claimName: portfolio-pvc
 
 ---
 apiVersion: v1
